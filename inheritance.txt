@@ -1,0 +1,271 @@
+import java.lang.String;
+import java.util. *;
+class Staff{
+ private int Code;
+ private String Name;
+ Staff(int C,String N)
+ {
+ Code=C;
+ Name=N;
+ }
+ int getCode()
+ {
+ return Code;
+ }
+ String getNav()
+ {
+ return Name;
+ }
+}
+class Teacher extends Staff{
+ private String Subject;
+ private int Publication;
+ private int Salary;
+ Teacher(int c,String n,String Sub,int Pub,int S)
+ {
+ super(c,n);
+ Subject=Sub;
+ Publication=Pub;
+ Salary=S;
+ }
+ String getsub()
+ {
+ return Subject;
+ }
+ int getPub()
+ {
+ return Publication;
+ }
+ int getMoney(){
+ return Salary;
+ }
+ void dis()
+ {
+ System.out.println("The code of the Staff: "+getCode());
+ System.out.println("The Name of the Staff: "+getNav());
+ System.out.println("The Teacher teaches the subject: "+getsub());
+ System.out.println("The Number of publication Teacher have is: "+getPub());
+ System.out.println("The Teachers Salary is: "+getMoney());
+ }
+}
+class Typist extends Staff{
+ private int speed;
+ Typist(int C,String n,int s){
+ super(C,n);
+ speed=s;
+ }
+ int getspeed(){
+ return speed;
+ }
+}
+class Regular extends Typist{
+ private int Monthly;
+ Regular(int C,String n,int S,int M)
+ {
+ super(C,n,S);
+ Monthly=M;
+ }
+ int getSal(){
+ return Monthly;
+ }
+ void dispy()
+ {
+ System.out.println("The code of the Staff: "+getCode());
+ System.out.println("The Name of the Staff: "+getNav());
+ System.out.println("The speed of the typist is: "+getspeed()+"words/min");
+ System.out.println("The salary of regular Typist is: " +getSal());
+ }
+}
+class Casual extends Typist{
+ private int daily;
+ Casual(int C,String n,int S,int d)
+ {
+ super(C,n,S);
+ daily=d;
+ }
+ int getd()
+ {
+ return daily;
+ }
+ void displ()
+ {
+ System.out.println("The code of the Staff: "+getCode());
+ System.out.println("The Name of the Staff: "+getNav());
+ System.out.println("The speed of the typist is: "+getspeed()+"words/min");
+ System.out.println("The daily wages is: "+getd());
+ }
+}
+class Officer extends Staff{
+ private int grade;
+ private int money;
+ Officer(int c,String n,int g,int m)
+ {
+ super(c,n);
+ grade=g;
+ money=m;
+ }
+ int getg()
+ {
+ return grade;
+ }
+ int getm()
+ {
+ return money;
+ }
+ void display()
+ {
+ System.out.println("The code of the Staff: "+getCode());
+ System.out.println("The Name of the Staff: "+getNav());
+ System.out.println("The grade of the Officer: "+getg());
+ System.out.println("The Salary of officer: "+ getm());
+ }
+}
+public class hierchical {
+ public static void main(String[] args) {
+ Vector<Teacher> t = new Vector<Teacher>();
+ Vector<Regular> typ = new Vector<Regular>();
+ Vector<Casual> ctp = new Vector<Casual>();
+ Vector<Officer> off = new Vector<Officer>();
+ Scanner sc = new Scanner(System.in);
+ int a = 1;
+ do {
+ System.out.println("1.Add staff");
+ System.out.println("2.Display detail of staff.");
+ System.out.println("3.Exit.");
+ System.out.print("Enter the choise: ");
+ int i = sc.nextInt();
+ switch (i) {
+ case 1:
+ {
+ System.out.println("1.Add details of Teacher. ");
+ System.out.println("2.Add details of Typist.");
+ System.out.println("3.Add details of Officer.");
+ System.out.print("Enter the choise: ");
+ int j=sc.nextInt();
+ switch (j) {
+ case 1:
+ System.out.println("Enter the code of the Teacher: ");
+ int co = sc.nextInt();
+ System.out.println("Enter the name of the teacher: ");
+ sc.nextLine();
+ String nav = sc.nextLine();
+ System.out.println("Enter the subject :");
+ String sub = sc.nextLine();
+ System.out.println("Enter the number of publication: ");
+ int p = sc.nextInt();
+ System.out.println("Enter the salary: ");
+ int sal = sc.nextInt();
+ Teacher nteac = new Teacher(co, nav, sub, p, sal);
+ t.addElement(nteac);
+ break;
+ case 2:
+ System.out.println("1 Regular");
+ System.out.println("2 Casual");
+ System.out.println("Enter the choise: ");
+ int k = sc.nextInt();
+ switch (k) {
+ case 1:
+ System.out.println("Enter the code of the Typist: ");
+ int code = sc.nextInt();
+ System.out.println("Enter the name of the Typist: ");
+ sc.nextLine();
+ String namm = sc.nextLine();
+ System.out.println("The Speed of the Typist: ");
+ int sep = sc.nextInt();
+ System.out.println("Enter the salary: ");
+ int sle = sc.nextInt();
+ Regular r = new Regular(code, namm, sep, sle);
+ typ.addElement(r);
+ break;
+ case 2:
+ System.out.println("Enter the code of the Typist: ");
+ int c = sc.nextInt();
+ System.out.println("Enter the name of the Typist: ");
+ sc.nextLine();
+ String n = sc.nextLine();
+ System.out.println("The Speed of the Typist: ");
+ int s = sc.nextInt();
+ System.out.println("Enter the salary: ");
+ int sa = sc.nextInt();
+ Casual C = new Casual(c, n, s, sa);
+ ctp.addElement(C);
+ break;
+ default:
+ System.out.println("Illegal Operation.");
+ }
+ break;
+ case 3:
+ System.out.println("Enter the code of the Officer: ");
+ sc.nextLine();
+ int c = sc.nextInt();
+ System.out.println("Enter the name of the Officer: ");
+ sc.nextLine();
+ String nam = sc.nextLine();
+ System.out.println("Enter the grade Of the Officer: ");
+ int gra = sc.nextInt();
+ System.out.println("Enter the salary: ");
+ int wa = sc.nextInt();
+ Officer of = new Officer(c, nam, gra, wa);
+ off.addElement(of);
+ break;
+ default:
+ System.out.println("Illegal Operation.");
+ }
+ }
+ break;
+ case 2:
+ {
+ System.out.println("1.Details of Teacher.");
+ System.out.println("2.Details of Typist.");
+ System.out.println("3.Details of Officer .");
+ System.out.println("Enter the choise :");
+ int k=sc.nextInt();
+ switch(k)
+ {
+ case 1:
+ System.out.println("Enter the code: ");
+ int c = sc.nextInt();
+ (t.elementAt(c-1)).dis();
+ break;
+ case 2:
+ System.out.println("1.Regular");
+ System.out.println("2.Casual");
+ System.out.println("Enter the Choise: ");
+ int choise=sc.nextInt();
+ switch(choise)
+ {
+ case 1:
+ System.out.println("Enter the code: ");
+ int d = sc.nextInt();
+ (typ.elementAt(d-1)).dispy();
+ break;
+ case 2:
+ System.out.println("Enter the code: ");
+ int d1 = sc.nextInt();
+ (ctp.elementAt(d1-1)).displ();
+ break;
+ default:
+ System.out.println("Illegal Operation.");
+ }
+ break;
+ case 3:
+ System.out.println("Enter the code: ");
+ int d = sc.nextInt();
+ (off.elementAt(d-1)).display();
+ break;
+ default:
+ System.out.println("Illegal Operation.");
+ }
+ }
+ break;
+ case 3:
+ {
+ a++;
+ break;
+ }
+ default:
+ System.out.println("Illegal Operation.");
+ }
+ } while (a == 1);
+ }
+}

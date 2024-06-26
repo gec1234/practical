@@ -1,0 +1,73 @@
+import java.lang.Thread;
+import java.io.*;
+class Thread4 extends Thread
+{
+ public void run()
+ {
+ for(int i=1;i<=3;i++)
+ {
+ System.out.println(" I am thread 4.");
+ }
+ }
+}
+class Thread2 extends Thread
+{
+ public boolean flag=true;
+ public void run()
+ {
+ for (int j=1;j<=3 && flag==true;j++) {
+ System.out.println("I am thread 2");
+ if(j==3)
+ {
+ flag =false;
+ System.out.println("It is Killed.");
+ }
+ }
+ }
+}
+class Thread3 extends Thread
+{
+ public void run()
+ {
+ for(int k=1;k<=3;k++)
+ {
+ if(k==2)
+ {
+ try{
+ Thread.sleep(2000);
+ }
+ catch(InterruptedException e)
+ {
+ System.out.println("NO ERROR");
+ }
+ }
+ System.out.println("I am thread 3.");
+ }
+ }
+}
+class Thread1 extends Thread{
+ public void run()
+ {
+ for(int x=1;x<=3;x++)
+ {
+ if(x==1)
+ {
+ Thread.yield();
+ }
+ System.out.println("I am thread 1.");
+ }
+ }
+}
+public class Threadingcode {
+ public static void main(String[] args) {
+ Thread1 t1 =new Thread1();
+ Thread2 t2=new Thread2();
+ Thread3 t3=new Thread3();
+ Thread4 t4=new Thread4();
+ t4.setPriority(10);
+ t1.start();
+ t2.start();
+ t3.start();
+ t4.start();
+ }
+}

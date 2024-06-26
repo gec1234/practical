@@ -1,0 +1,136 @@
+import java.awt.*;
+import java.awt.event.*;
+public class Caclulate extends Frame implements ActionListener {
+ TextArea display;
+ Button Add, Sub,Mul, Div, Equal,Clear,b0,b1,b2,b3,b4,b5,b6,b7,b8,b9;
+ double tempFirst = 0, result = 0;
+ char operator;
+ public Caclulate() {
+ setBackground(Color.BLACK);
+ setLayout(new GridLayout(5,3));
+ setLayout(null); // No layout manager
+ display = new TextArea();
+ display.setBounds(50, 50, 260, 60);
+ display.setEditable(true);
+ add(display);
+ b0 = new Button("0");
+ b1 = new Button("1");
+ b2 = new Button("2");
+ b3 = new Button("3");
+ b4 = new Button("4");
+ b5 = new Button("5");
+ b6 = new Button("6");
+ b7 = new Button("7");
+ b8 = new Button("8");
+ b9 = new Button("9");
+ b0.setBounds(50, 200, 80, 60);
+ b1.setBounds(120, 200, 80, 60);
+ b2.setBounds(190, 200, 80, 60);
+ b3.setBounds(50, 270, 80, 60);
+ b4.setBounds(120, 270, 80, 60);
+ b5.setBounds(190, 270, 80, 60);
+ b6.setBounds(50, 340, 80, 60);
+ b7.setBounds(120, 340, 80, 60);
+ b8.setBounds(190, 340, 80, 60);
+ b9.setBounds(50, 410, 80, 60);
+ this.add(b0);
+ this.add(b1);
+ this.add(b2);
+ this.add(b3);
+ this.add(b4);
+ this.add(b5);
+ this.add(b6);
+ this.add(b7);
+ this.add(b8);
+ this.add(b9);
+ b0.addActionListener(this);
+ b1.addActionListener(this);
+ b2.addActionListener(this);
+ b3.addActionListener(this);
+ b4.addActionListener(this);
+ b5.addActionListener(this);
+ b6.addActionListener(this);
+ b7.addActionListener(this);
+ b8.addActionListener(this);
+ b9.addActionListener(this);
+ Add = new Button("+");
+ Sub = new Button("-");
+ Mul = new Button("*");
+ Div = new Button("/");
+ Equal = new Button("=");
+ Clear = new Button("C");
+ Add.setBounds(280, 130, 50, 50);
+ Add.addActionListener(this);
+ add(Add);
+ Sub.setBounds(280, 200, 50, 50);
+ Sub.addActionListener(this);
+ add(Sub);
+ Mul.setBounds(280, 270, 50, 50);
+ Mul.addActionListener(this);
+ add(Mul);
+ Div.setBounds(280, 340, 50, 50);
+ Div.addActionListener(this);
+ add(Div);
+ Equal.setBounds(280, 410, 50, 50);
+ Equal.addActionListener(this);
+ add(Equal);
+ Clear.setBounds(280, 480, 50, 50);
+ Clear.addActionListener(this);
+ add(Clear);
+ setTitle("Simple Calculator by Saiesh");
+ setSize(460, 700);
+ setVisible(true);
+ }
+ String state;
+ double num1;
+ public void actionPerformed(ActionEvent ae) {
+ String val=ae.getActionCommand();
+ System.out.println(val);
+ String command = ae.getActionCommand();
+ if ((ae.getActionCommand() == "1") || (ae.getActionCommand() == "2") || (ae.getActionCommand() ==
+ "3") || (ae.getActionCommand() == "4") || (ae.getActionCommand() == "5") || (ae.getActionCommand() ==
+ "6") || (ae.getActionCommand() == "7") || (ae.getActionCommand() == "8") || (ae.getActionCommand() ==
+ "9") || (ae.getActionCommand() == "0")){
+ display.setText(display.getText()+val);
+ }
+ else if (ae.getActionCommand().equals("+") ||ae.getActionCommand()==" -"||ae.getActionCommand()
+ =="*"||ae.getActionCommand()=="/"){
+ num1 = Double.parseDouble(display.getText());
+ state=val;
+ display.setText("");
+ } else if (ae.getActionCommand().equals("=")) {
+ Double num2 = Double.parseDouble(display.getText());
+ switch (state) {
+ case "+":
+ double result = num1 + num2;
+ num1 = result;
+ display.setText(String.valueOf(String.valueOf(result)));
+ break;
+ case "-":
+ double result1 = num1 - num2;
+ display.setText(String.valueOf(String.valueOf(result1)));
+ num1 = result1;
+ break;
+ case "/":
+ if (num2 == 0) {
+ display.setText("Error: Divide by zero");
+ return;}
+ double result2 = num1 / num2;
+ display.setText(String.valueOf(String.valueOf(result2)));
+ num1= result2;
+ break;
+ case "*":
+ double result3 = num1 * num2;
+ display.setText(String.valueOf(String.valueOf(result3)));
+ num1 = result3;
+ break;
+ }
+ }
+ else if (ae.getActionCommand().equals("C")) {
+ display.setText("");
+ }
+ }
+ public static void main(String[] args) {
+ new Caclulate();
+ }
+}

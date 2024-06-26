@@ -1,0 +1,54 @@
+
+package employeepay;
+public class Emppay {
+ private String name;
+ private String empid;
+ private String gender;
+ private double basicpay;
+ public double Dra;
+ public double TA;
+ public double HA;
+ public double GP;
+ public double Deduction;
+ public double netpay;
+ public Emppay(String nav, String id, String gen, double BP) {
+ name = nav;
+ empid = id;
+ gender = gen;
+ basicpay = BP;
+ }
+ public double getBasicpay() {
+ return basicpay;
+ }
+ public void calculate() {
+ Dra = (0.34) * getBasicpay();
+ System.out.println("DA: " + Dra);
+ HA = (0.18) * (Dra + getBasicpay());
+ System.out.println("HRA: " + HA);
+ TA = 3600 + (0.34) * 3600;
+ System.out.println("TA: " + TA);
+ GP = Dra + HA + TA;
+ System.out.println("Grosspay: " + GP);
+ Deduction = (0.1 * GP) + (0.2 * GP);
+ System.out.println("Deduction: " + Deduction);
+ netpay = GP - Deduction;
+ System.out.println("Netpay: " + netpay);
+ }
+}
+import employeepay.Emppay;
+import java.util.Scanner;
+public class Emppayroll {
+ public static void main(String[] args) {
+ Scanner sc=new Scanner(System.in);
+ System.out.println("Enter the name of the Employee:");
+ String name=sc.nextLine();
+ System.out.println("Enter the employee Id: ");
+ String id=sc.nextLine();
+ System.out.println("Enter the Gender: ");
+ String gender=sc.nextLine();
+ System.out.println("Enter the basic pay: ");
+ Double bp=sc.nextDouble();
+ Emppay Emp= new Emppay(name,id,gender,bp);
+ Emp.calculate();
+ }
+}

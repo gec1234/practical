@@ -1,0 +1,43 @@
+public class merginarray {
+ static void sort(int arr[],int arr2[],int n,int m)
+ { int i,j,k;
+ i=j=k=0;
+ int mer[]=new int[m+n];
+ while(i<n && j<m)
+ {
+ if(arr[i]<arr2[j])
+ {
+ mer[k]=arr[i];
+ i++;
+ }
+ else {
+ mer[k]=arr2[j];
+ j++;
+ }
+ k++;
+ }
+ while(i<n)
+ {
+ mer[k]=arr[i];
+ i++;
+ k++;
+ }
+ while(j<m)
+ {
+ mer[k]=arr2[j];
+ j++;
+ k++;
+ }
+ for(int a=0;a<m+n;a++)
+ {
+ System.out.print(mer[a]+" ");
+ }
+ }
+ public static void main(String[] args) {
+ int arr[]={1,3,5,6,10};
+ int arr2[]={2,4,7,8,9};
+ int n= arr.length;
+ int m=arr2.length;
+ sort(arr,arr2,n,m);
+ }
+}
